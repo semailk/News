@@ -19,11 +19,8 @@ class PostController extends Controller
         $posts = Post::query()->paginate(5);
         $categories = Category::all();
 
-        $client = DB::table('oauth_clients')->where('id', '=', 2)->get()->first();
-        $authorization = base64_encode("$client->id:$client->secret");
-        $token = DB::table('oauth_access_tokens')->where('user_id', '=', 12)->get()->first()->id;
 
-        return view('posts.index', compact('posts', 'categories', 'authorization', 'token'));
+        return view('posts.index', compact('posts', 'categories'));
     }
 
     /**
@@ -51,11 +48,14 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $post = Post::query()->findOrFail($id);
+        $categories = Category::all();
+
+        return view('posts.show',compact('post', 'categories'));
     }
 
     /**
@@ -92,3 +92,8 @@ class PostController extends Controller
         //
     }
 }
+
+
+//$client = DB::table('oauth_clients')->where('id', '=', 2)->get()->first();
+//        $authorization = base64_encode("$client->id:$client->secret");
+//        $token = DB::table('oauth_access_tokens')->where('user_id', '=', 12)->get()->first()->id;

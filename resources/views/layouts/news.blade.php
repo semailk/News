@@ -12,7 +12,8 @@
     <title>News</title>
     <style>
         body {
-            background: #1a202c;
+            background: url("../../images/3.jpg") no-repeat center center;
+            background-size: cover;
         }
 
         a, h1, h2, h3, h4, h5, h6, p {
@@ -104,25 +105,25 @@
             </div>
             <div class="col-4 text-center">
                 <a class="blog-header-logo text-white" href="/news">Главная страница</a>
+                <a href="https://vk.com/id15341621"><img src="https://img.icons8.com/nolan/64/vk-circled.png" id="vk"
+                                                         width="48"/></a>
+                <a href="https://www.instagram.com/semailk/?hl=ru"><img id="inst"
+                                                                        src="https://img.icons8.com/doodle/48/000000/instagram-new.png"/></a>
+                <a href="https://github.com/semailk?tab=repositories"><img id="git"
+                                                                           src="https://img.icons8.com/dusk/64/000000/github.png"
+                                                                           width="48"/></a>
             </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <a href="https://vk.com/id15341621"><img id="vk" class="mr-3"
-                                                         src="https://img.icons8.com/ios/50/000000/vkontakte-circled.png"
-                                                         width="35"/></a>
-                <a href="https://www.instagram.com/semailk/?hl=ru"><img id="inst" class="mr-3"
-                                                                        src="https://img.icons8.com/material-outlined/48/000000/instagram-new--v1.png"
-                                                                        width="35"/></a>
-                <a href="https://github.com/semailk?tab=repositories"><img id="git" class="mr-3"
-                                                                           src="https://img.icons8.com/windows/64/000000/github-2.png"
-                                                                           width="35"/></a>
+            <div class="col-4 d-flex justify-content-center">
                 @if(!\Illuminate\Support\Facades\Auth::check())
                     <a class="btn btn-sm btn-outline-danger" href="{{route('login')}}">Войти</a>
                     <a class="btn btn-sm btn-outline-primary" href="{{route('register')}}">Регистрация</a>
                 @else
-
                     <h3 style="font-family: 'Abyssinica SIL';">{{\Illuminate\Support\Facades\Auth::user()->name}}</h3>
                     <form action="{{route('logout')}}" method="post">
                         @csrf
+                        @if(\Illuminate\Support\Facades\Auth::user()->getAuthIdentifier() == 12)
+                            <a href="{{route('admin.news.index')}}"><button type="button" class="btn btn-outline-warning">Админ панель</button></a>
+                        @endif
                         <button class="btn btn-sm btn-outline-danger" type="submit">Выйти</button>
                     </form>
                 @endif
@@ -143,7 +144,7 @@
         <div style="width: 85%" class="container mb-3">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('../images/1.jpg')}}" class="d-block w-100" height="400px" alt="...">
+                    <img src="{{ asset('../images/main.jpeg')}}" class="d-block w-100" height="400px" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('../images/2.jpg')}}" class="d-block w-100" height="400px" alt="...">

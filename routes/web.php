@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\Admin\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,7 @@ Auth::routes();
 
 Route::prefix('news')->group(function (){
     Route::get('/', [PostController::class,'index'])->name('post.index');
+    Route::get('/show/{id}', [PostController::class,'show'])->name('post.show');
 });
 
 Route::prefix('categories/')->group(function (){
@@ -31,4 +33,15 @@ Route::prefix('categories/')->group(function (){
 
 Route::prefix('favorite/')->group(function (){
     Route::get('/', [FavoriteController::class,'index'])->name('favorite.index');
+});
+
+Route::prefix('admin/news/')->middleware('auth')->group(function (){
+    Route::get('/', [AdminController::class,'index'])->name('admin.news.index');
+    Route::post('post/store', [AdminController::class,'postStore'])->name('admin.news.post.store');
+    Route::get('post/slide', [AdminController::class,'slideEdit'])->name('post.slide.edit');
+    Route::post('post/slide/update', [AdminController::class,'slideUpdate'])->name('post.update.slide');
+    Route::get('categories', [AdminController::class,'getCategories'])->name('admin.categories');
+    Route::post('category/store', [AdminController::class,'categoryStore'])->name('admin.category.store');
+    Route::get('category/destroy/{id}', [AdminController::class,'destroy'])->name('admin.category.destroy');
+
 });

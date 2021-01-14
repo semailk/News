@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminPostRequest;
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\Slayd;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,43 +36,27 @@ class AdminController extends Controller
         return redirect()->back()->with(['success' => 'Запись сохранена']);
     }
 
-    public function categoryStore(Request $request)
+    public function slideEdit()
     {
-        Category::query()->create([
-            'title' => $request->input('title')
-        ]);
-
-        return redirect()->back()->with(['success' => 'Сохранено!']);
+        $images = Slide::all();
+        return view('admin.slideEdit', compact('images'));
     }
 
-    public function getCategories()
+    public function slideUpdate(Request $request)
     {
-        $categories = Category::query()->select('id', 'title')->paginate(10);
-        $title = Category::query()->select('title')->get();
-
-        return view('admin.categories', compact('categories', 'title'));
-    }
-
-    public function destroy($id)
-    {
-        Category::query()->find($id)->delete();
-        return redirect()->back()->with(['success' => 'Запись успешно удалена.']);
-    }
-
-    public function slaydEdit()
-    {
-        $images = Slayd::all();
-        return view('admin.slaydEdit', compact('images'));
-    }
-
-    public function slaydUpdate(Request $request)
-    {
-        Storage::disk('public')->delete('slayd/O550IxsuHD7bBrfpgdcVwh3GUP84AJvbZfo7eW7H.jpg');
         $rules = ['img' => 'required'];
         $this->validate($request, $rules);
-        $name = $request->file('img')->store('slayd', 'public');
-        Slayd::query()->create(['img' => $name]);
+        $name = $request->file('img')->store('slide', 'public');
+        Slide::query()->create(['img' => $name]);
 
+        return redirect()->back();
+    }
+
+    public function slideDelete($id)
+    {
+        $nameImg = Slide::query()->find($id);
+        Slide::query()->find($id)->delete();
+        Storage::disk('public')->delete($nameImg->img);
         return redirect()->back();
     }
 }

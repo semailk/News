@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Slayd extends Model
+class Slide extends Model
 {
     use HasFactory;
 
+    protected $table = 'slide';
     protected $fillable = ['img'];
 }

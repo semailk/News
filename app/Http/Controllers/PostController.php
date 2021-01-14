@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,9 +19,9 @@ class PostController extends Controller
     {
         $posts = Post::query()->paginate(5);
         $categories = Category::all();
+        $slide = Slide::all();
 
-
-        return view('posts.index', compact('posts', 'categories'));
+        return view('posts.index', compact('posts','slide', 'categories'));
     }
 
     /**
@@ -55,7 +56,7 @@ class PostController extends Controller
         $post = Post::query()->findOrFail($id);
         $categories = Category::all();
 
-        return view('posts.show',compact('post', 'categories'));
+        return view('posts.show', compact('post', 'categories'));
     }
 
     /**

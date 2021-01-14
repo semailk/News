@@ -31,7 +31,7 @@
                     <a class="nav-link dropdown-toggle show" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="true">Работа с постами</a>
                     <ul class="dropdown-menu show" aria-labelledby="dropdown01">
                         <li><a class="dropdown-item" href="{{route('post.index')}}">Страница гостей</a></li>
-                        <li><a class="dropdown-item" href="{{route('post.slayd.edit')}}">Главное меню с постами</a></li>
+                        <li><a class="dropdown-item" href="{{route('post.slide.edit')}}">Настройка слайдов</a></li>
 {{--                        <li><a class="dropdown-item" href="{{route('post.index')}}">Главное меню с постами</a></li>--}}
                     </ul>
                 </li>

@@ -121,8 +121,10 @@
                     <h3 style="font-family: 'Abyssinica SIL';">{{\Illuminate\Support\Facades\Auth::user()->name}}</h3>
                     <form action="{{route('logout')}}" method="post">
                         @csrf
-                        @if(\Illuminate\Support\Facades\Auth::user()->getAuthIdentifier() == 12)
-                            <a href="{{route('admin.news.index')}}"><button type="button" class="btn btn-outline-warning">Админ панель</button></a>
+                        @if(\Illuminate\Support\Facades\Auth::user()->getAuthIdentifier() == 1)
+                            <a href="{{route('admin.news.index')}}">
+                                <button type="button" class="btn btn-outline-warning">Админ панель</button>
+                            </a>
                         @endif
                         <button class="btn btn-sm btn-outline-danger" type="submit">Выйти</button>
                     </form>
@@ -146,12 +148,11 @@
                 <div class="carousel-item active">
                     <img src="{{ asset('../images/main.jpeg')}}" class="d-block w-100" height="400px" alt="...">
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('../images/2.jpg')}}" class="d-block w-100" height="400px" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('../images/3.png')}}" class="d-block w-100" height="400px" alt="...">
-                </div>
+                @foreach($slide as $img)
+                    <div class="carousel-item">
+                        <img src="{{ asset('storage/' . $img->img)}}" class="d-block w-100" height="400px" alt="...">
+                    </div>
+                @endforeach
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -163,10 +164,8 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
     @yield('content')
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -65,7 +65,7 @@
     </div>
     <div class="container pb-5">
         <div class="card">
-            <form action="{{route('post.update.slayd')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('post.slide.update')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input name="img" type="file" class="form-control">
                 <button type="submit" class="btn btn-outline-primary mt-2">Загрузить</button>

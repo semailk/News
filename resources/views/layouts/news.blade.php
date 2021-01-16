@@ -105,6 +105,7 @@
             </div>
             <div class="col-4 text-center">
                 <a class="blog-header-logo text-white" href="/news">Главная страница</a>
+                <a href="{{route('user.suggestions')}}"><button class="btn btn-sm btn-outline-primary" type="button">Раздель для пользователей</button></a>
                 <a href="https://vk.com/id15341621"><img src="https://img.icons8.com/nolan/64/vk-circled.png" id="vk"
                                                          width="48"/></a>
                 <a href="https://www.instagram.com/semailk/?hl=ru"><img id="inst"
@@ -118,7 +119,6 @@
                     <a class="btn btn-sm btn-outline-danger" href="{{route('login')}}">Войти</a>
                     <a class="btn btn-sm btn-outline-primary" href="{{route('register')}}">Регистрация</a>
                 @else
-                    <h3 style="font-family: 'Abyssinica SIL';">{{\Illuminate\Support\Facades\Auth::user()->name}}</h3>
                     <form action="{{route('logout')}}" method="post">
                         @csrf
                         @if(\Illuminate\Support\Facades\Auth::user()->getAuthIdentifier() == 1)
@@ -126,8 +126,11 @@
                                 <button type="button" class="btn btn-outline-warning">Админ панель</button>
                             </a>
                         @endif
+                        <div class="d-flex w-75 flex-wrap justify-content-center">
                         <button class="btn btn-sm btn-outline-danger" type="submit">Выйти</button>
+                        </div>
                     </form>
+                    <h3 style="font-family: 'Abyssinica SIL';">{{\Illuminate\Support\Facades\Auth::user()->name}}</h3>
                 @endif
             </div>
         </div>

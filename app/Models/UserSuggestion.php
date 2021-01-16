@@ -5,25 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Favorite
- * @package App\Models
- * @property $user_id
- * @property $post_id
- */
-class Favorite extends Model
+class UserSuggestion extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'post_id'];
+    protected $fillable = ['category_id', 'user_id', 'img' ,'title', 'body','checked_at'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function post()
+    public function category()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Category::class);
     }
 }

@@ -8,10 +8,12 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+
     public function index()
     {
         $categories = Category::all();
@@ -54,9 +56,16 @@ class AdminController extends Controller
 
     public function slideDelete($id)
     {
-        $nameImg = Slide::query()->find($id);
-        Slide::query()->find($id)->delete();
-        Storage::disk('public')->delete($nameImg->img);
-        return redirect()->back();
+        DB::transaction(function () use ($id) {
+            $slide = DB::table('slide')->select('img')->find($id);
+            Storage::disk('public')->delete($slide->img);
+            DB::table('slide')->delete($id);
+            return redirect()->back();
+        });
+    }
+
+    public function userSuggestion()
+    {
+        
     }
 }

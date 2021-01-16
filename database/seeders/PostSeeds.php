@@ -15,12 +15,14 @@ class PostSeeds extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i <= 10; $i++) {
+        $img = 'uploads/1.jpg';
+        for ($i = 0; $i <= 10; $i++) {
             DB::table('posts')->insert([
                 'user_id' => rand(1, 10),
                 'category_id' => rand(1, 10),
                 'title' => Str::random(10),
-                'body' => Str::random(500)
+                'body' => Str::random(500),
+                'img' =>  $img
             ]);
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,7 +17,8 @@ class CategoryController extends Controller
     {
         $category = Category::query()->findOrFail($id)->posts;
         $categories = Category::all();
-        return view('categories.index', compact('category', 'categories'));
+        $slide = Slide::all();
+        return view('categories.index', compact('category', 'slide','categories'));
     }
 
     public function categoryStore(Request $request)

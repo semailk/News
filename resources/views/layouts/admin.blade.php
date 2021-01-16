@@ -32,7 +32,7 @@
                     <ul class="dropdown-menu show" aria-labelledby="dropdown01">
                         <li><a class="dropdown-item" href="{{route('post.index')}}">Страница гостей</a></li>
                         <li><a class="dropdown-item" href="{{route('post.slide.edit')}}">Настройка слайдов</a></li>
-{{--                        <li><a class="dropdown-item" href="{{route('post.index')}}">Главное меню с постами</a></li>--}}
+                        <li><a class="dropdown-item" href="{{route('admin.getAddPosts')}}">Предложение пользоваталей</a></li>
                     </ul>
                 </li>
             </ul>

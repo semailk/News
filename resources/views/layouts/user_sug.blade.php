@@ -52,7 +52,7 @@
 
         <div class="col-md-2 d-flex align-items-center">
             <img src="https://img.icons8.com/color/96/000000/edit-user-male--v1.png" width="40"/>
-            <a style="text-decoration: none;color: #d59412" href="{{route('post.index')}}"><h6>Сообщения
+            <a style="text-decoration: none;color: #d59412" href="{{route('admin.sendMessages')}}"><h6>Сообщения
                     отправленные модератору</h6></a>
         </div>
 

@@ -2,7 +2,7 @@
 @section('content')
     <style>
         body {
-            background: #6c5b30;
+            background: #5a6268;
         }
     </style>
     <div class="container">
@@ -25,7 +25,7 @@
             <h2 class="text-white">Погода в городе <?php echo $data->name; ?></h2>
             <div class="row">
                 <p class="text-warning"><?php echo date("l g:i a", $currentTime); ?></p>
-                <p class="text-white"><?php echo date("jS F, Y",$currentTime); ?></p>
+                <p class="text-white"><?php echo date("jS F, Y", $currentTime); ?></p>
                 <p class="text-white"><?php echo ucwords($data->weather[0]->description); ?></p>
             </div>
             <div class="weather__forecast">
@@ -34,12 +34,12 @@
             </div>
             <p class="text-white">Влажность: <?php echo $data->main->humidity; ?> %</p>
             <p class="text-white">Ветер: <?php echo $data->wind->speed; ?> км/ч</p>
-        </div>
-        <script src="{{asset('../js/weather.js')}}"></script>
-    @else
-    <h1 class="text-white">Такой город не найден</h1>
-    @endif
 
+            <script src="{{asset('../js/weather.js')}}"></script>
+            @else
+                <h1 class="text-white">Такой город не найден</h1>
+            @endif
+        </div>
 @endsection
 
 

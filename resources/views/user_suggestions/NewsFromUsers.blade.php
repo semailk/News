@@ -2,7 +2,7 @@
 @section('content')
     <style>
         body {
-            background: #8e5a2d;
+            background: #5a6268;
         }
     </style>
     <div style="margin-top: 200px" class="container">
@@ -18,13 +18,13 @@
             </thead>
             <tbody>
             @foreach($news as $new)
-                @if($new->cheched_at == 1)
+                @if($new->checked_at == 1)
                 <tr>
-                    <th scope="row">{{$new->id}}</th>
-                    <td>{{$new->title}}</td>
-                    <td><img src="{{asset('storage/'. $new->img)}}" width="200" height="200"></td>
-                    <td>{{$new->created_at}}</td>
-                    <td>{{$new->user->name}}</td>
+                    <th class="align-middle" scope="row">{{$new->id}}</th>
+                    <td class="align-middle">{{$new->title}}</td>
+                    <td class="align-middle"><img src="{{asset('storage/'. $new->img)}}" width="200" height="200"></td>
+                    <td class="align-middle">{{$new->created_at}}</td>
+                    <td class="align-middle">{{$new->user->name}}</td>
                 </tr>
                 @endif
             @endforeach

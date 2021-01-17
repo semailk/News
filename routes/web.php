@@ -43,6 +43,9 @@ Route::prefix('admin/news/')->middleware('auth')->group(function (){
     Route::post('slide/update', [AdminController::class,'slideUpdate'])->name('post.slide.update');
     Route::get('slide/delete/{id}', [AdminController::class,'slideDelete'])->name('admin.slide.delete');
     Route::get('user/suggestions', [UserSuggestionController::class,'getAddPosts'])->name('admin.getAddPosts');
+    Route::get('user/suggestions/delete/{id}', [UserSuggestionController::class,'addPostDelete'])->name('admin.addPostDelete');
+    Route::get('user/suggestions/addPost/{id}', [UserSuggestionController::class,'addUserPost'])->name('admin.addUserPost');
+    Route::get('user/suggestions/sendMessages', [UserSuggestionController::class,'sendMessages'])->name('admin.sendMessages');
 });
 
 Route::prefix('user_suggestions')->middleware('auth')->group(function (){
